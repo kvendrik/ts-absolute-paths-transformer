@@ -1,5 +1,8 @@
 # TypeScript Absolute Paths Transformer
 
+[![CircleCI](https://circleci.com/gh/kvendrik/ts-absolute-paths-transformer.svg?style=svg)](https://circleci.com/gh/kvendrik/ts-absolute-paths-transformer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A small utility that converts absolute paths in TypeScript files to relative ones.
 
 ## Installation
