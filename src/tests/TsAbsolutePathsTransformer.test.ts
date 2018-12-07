@@ -1,0 +1,45 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
+import {resolve} from 'path';
+import {cp, rm, mkdir} from 'shelljs';
+import {readFileSync} from 'fs';
+import TsAbsolutePathsTransformer from '../TsAbsolutePathsTransformer';
+
+const FIXTURE_PATH = resolve(__dirname, '.test-fixture');
+
+describe('TsAbsolutePathsTransformer', () => {
+  beforeEach(() => {
+    mkdir(FIXTURE_PATH);
+  });
+
+  afterEach(() => {
+    rm('-rf', FIXTURE_PATH);
+  });
+
+  it('transforms import paths', async () => {
+    useFixture('basic');
+
+    const transformer = new TsAbsolutePathsTransformer({
+      srcPath: FIXTURE_PATH,
+      isModule(path: string) {
+        return path.startsWith('utilities');
+      },
+      resolveModulePath(modulePath: string) {
+        return resolve(FIXTURE_PATH, modulePath);
+      },
+    });
+
+    await transformer.transformAndSave();
+
+    const newIndexContents = getFixtureContents('index.ts');
+    expect(newIndexContents).toContain('./utilities/dog');
+  });
+});
+
+function useFixture(name: string) {
+  cp('-R', resolve(__dirname, `fixtures/${name}/*`), FIXTURE_PATH);
+}
+
+function getFixtureContents(filePath: string) {
+  return readFileSync(resolve(FIXTURE_PATH, filePath), 'utf-8');
+}

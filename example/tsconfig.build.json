@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "rootDir": "./build-intermediate",
+    "baseUrl": "./build-intermediate"
+  },
+  "exclude": ["./src"]
+}

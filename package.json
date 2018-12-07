@@ -1,0 +1,46 @@
+{
+  "name": "ts-absolute-paths-transformer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "ts-node ./src",
+    "start:dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "lint": "yarn lint:ts && yarn lint:tslint && yarn lint:eslint",
+    "lint:ts": "tsc --noEmit --pretty",
+    "lint:eslint": "eslint src --ext .ts",
+    "lint:tslint": "tslint -c tslint.json --project tsconfig.json 'src/**/*.ts'",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "ci": "yarn lint && yarn test",
+    "build": "yarn clean && tsc --outDir build && mv build/src/* build && rm -rf build/src",
+    "clean": "rm -rf build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ts-simple-ast": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.1",
+    "@types/node": "^10.5.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-typescript": "^0.12.0",
+    "jest": "^22.4.3",
+    "nodemon": "^1.18.3",
+    "prettier": "^1.12.1",
+    "shelljs": "^0.8.3",
+    "ts-jest": "^22.4.2",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^3.2.2",
+    "typescript-eslint-parser": "^16.0.1"
+  }
+}
