@@ -12,7 +12,7 @@
     "lint:tslint": "tslint -c tslint.json --project tsconfig.json 'src/**/*.ts'",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "ci": "yarn lint && yarn test",
+    "test:ci": "yarn lint && yarn test",
     "build": "yarn clean && tsc --outDir build && mv build/src/* build && rm -rf build/src",
     "clean": "rm -rf build"
   },
@@ -41,6 +41,6 @@
     "ts-node": "^7.0.0",
     "tslint": "^5.9.1",
     "typescript": "^3.2.2",
-    "typescript-eslint-parser": "^16.0.1"
+    "typescript-eslint-parser": "^21.0.2"
   }
 }
