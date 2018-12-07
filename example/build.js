@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 /**
- * A simple build script that makes build a TypeScript project
- * that relies on absolute imports based on a tsconfig baseUrl work.
+ * A simple build script that builds a TypeScript project
+ * that relies on absolute imports using a tsconfig baseUrl.
  *
  * It does the following:
  * 1. Copies the source into a build-intermediate/ folder.
