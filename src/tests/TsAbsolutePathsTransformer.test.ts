@@ -16,7 +16,7 @@ describe('TsAbsolutePathsTransformer', () => {
     rm('-rf', FIXTURE_PATH);
   });
 
-  it('transforms import paths', async () => {
+  it('transforms basic import paths', async () => {
     useFixture('basic');
 
     const transformer = new TsAbsolutePathsTransformer({
@@ -33,6 +33,64 @@ describe('TsAbsolutePathsTransformer', () => {
 
     const newIndexContents = getFixtureContents('index.ts');
     expect(newIndexContents).toContain('./utilities/dog');
+  });
+
+  it('transforms deeply nested import paths', async () => {
+    useFixture('basic');
+
+    const transformer = new TsAbsolutePathsTransformer({
+      srcPath: FIXTURE_PATH,
+      isModule(path: string) {
+        return path.startsWith('utilities');
+      },
+      resolveModulePath(modulePath: string) {
+        return resolve(FIXTURE_PATH, modulePath);
+      },
+    });
+
+    await transformer.transformAndSave();
+
+    const newPageContents = getFixtureContents('components/Page/Page.ts');
+    expect(newPageContents).toContain('../../utilities/dog');
+  });
+
+  it('transforms deeply nested export paths', async () => {
+    useFixture('basic');
+
+    const transformer = new TsAbsolutePathsTransformer({
+      srcPath: FIXTURE_PATH,
+      isModule(path: string) {
+        return path.startsWith('utilities');
+      },
+      resolveModulePath(modulePath: string) {
+        return resolve(FIXTURE_PATH, modulePath);
+      },
+    });
+
+    await transformer.transformAndSave();
+
+    const newPageContents = getFixtureContents('components/Page/index.ts');
+    expect(newPageContents).toContain('../../utilities/dog');
+  });
+
+  it('skips non-module paths', async () => {
+    useFixture('basic');
+
+    let askedToResolvePath = false;
+
+    const transformer = new TsAbsolutePathsTransformer({
+      srcPath: FIXTURE_PATH,
+      isModule() {
+        return false;
+      },
+      resolveModulePath() {
+        askedToResolvePath = true;
+        return '';
+      },
+    });
+
+    await transformer.transformAndSave();
+    expect(askedToResolvePath).toBeFalsy();
   });
 });
 
