@@ -1,7 +1,7 @@
 {
   "name": "ts-absolute-paths-transformer",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.0-alpha",
+  "description": "Transforms absolute paths in a TypeScript project to relative ones.",
   "main": "build/index.js",
   "scripts": {
     "start": "ts-node ./src",
@@ -17,7 +17,7 @@
     "clean": "rm -rf build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Koen Vendrik <k.vendrik@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "ts-simple-ast": "^19.1.0"
