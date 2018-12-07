@@ -5,7 +5,7 @@ import Project, {
   ExportDeclaration,
 } from 'ts-simple-ast';
 
-interface Options {
+export interface Options {
   srcPath: string;
   isModule(filePath: string): boolean;
   resolveModulePath(path: string): string;

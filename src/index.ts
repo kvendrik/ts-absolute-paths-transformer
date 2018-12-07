@@ -1,1 +1,1 @@
-export {default} from './TsAbsolutePathsTransformer';
+export {default, Options} from './TsAbsolutePathsTransformer';
