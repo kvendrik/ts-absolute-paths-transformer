@@ -30,7 +30,7 @@ await transformer.transformAndSave();
 
 ## Why do we need this?
 
-TypeScript supports handy options like [`baseUrl` and `paths`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) which allow you to absolutely import files. Unfortiantly however Microsoft currently (intentionally) [doesn't convert those absolute paths to relative ones at compile time](https://github.com/Microsoft/TypeScript/issues/15479#issuecomment-300240856) which when compiling your files using `tsc` leaves you with esnext code that won't work when imported into a different project because the absolute paths will break.
+TypeScript supports handy options like [`baseUrl` and `paths`](https://www.typescriptlang.org/docs/handbook/compiler-options.html) which allow you to absolutely import files. Unfortunately however Microsoft currently (intentionally) [doesn't convert those absolute paths to relative ones at compile time](https://github.com/Microsoft/TypeScript/issues/15479#issuecomment-300240856) which when compiling your files using `tsc` leaves you with esnext code that won't work when imported into a different project because the absolute paths will break.
 
 Hence this small utility which gives you an easy way to convert those absolute paths to relative ones yourself before you throw your code into `tsc`.
 
