@@ -59,11 +59,11 @@ export default class TsAbsolutePathsTransformer {
     return path ? path.getLiteralValue() : null;
   }
 
-  private absoluteToRelativePath(filePath: string, modulePath: string) {
+  private absoluteToRelativePath(filePath: string, path: string) {
     const {resolveAbsoluteModule} = this.options;
     const relativePath = relative(
       dirname(filePath),
-      resolveAbsoluteModule(modulePath),
+      resolveAbsoluteModule(path),
     );
     return relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
   }

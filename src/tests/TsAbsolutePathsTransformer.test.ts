@@ -24,8 +24,8 @@ describe('TsAbsolutePathsTransformer', () => {
       isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveAbsoluteModule(modulePath: string) {
-        return resolve(FIXTURE_PATH, modulePath);
+      resolveAbsoluteModule(path: string) {
+        return resolve(FIXTURE_PATH, path);
       },
     });
 
@@ -43,8 +43,8 @@ describe('TsAbsolutePathsTransformer', () => {
       isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveAbsoluteModule(modulePath: string) {
-        return resolve(FIXTURE_PATH, modulePath);
+      resolveAbsoluteModule(path: string) {
+        return resolve(FIXTURE_PATH, path);
       },
     });
 
@@ -62,8 +62,8 @@ describe('TsAbsolutePathsTransformer', () => {
       isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveAbsoluteModule(modulePath: string) {
-        return resolve(FIXTURE_PATH, modulePath);
+      resolveAbsoluteModule(path: string) {
+        return resolve(FIXTURE_PATH, path);
       },
     });
 

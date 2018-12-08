@@ -39,8 +39,8 @@ const transformer = new TsAbsolutePathsTransformer({
     const moduleName = path.split('/')[0];
     return moduleOptions.includes(moduleName);
   },
-  resolveAbsoluteModule(modulePath) {
-    return resolve(BUILD_INTERMEDIATE_PATH, modulePath);
+  resolveAbsoluteModule(path) {
+    return resolve(BUILD_INTERMEDIATE_PATH, path);
   },
 });
 
