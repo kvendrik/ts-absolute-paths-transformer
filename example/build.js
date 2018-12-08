@@ -34,12 +34,12 @@ mkdir(BUILD_INTERMEDIATE_PATH);
 cp('-R', `${SRC_PATH}/*`, BUILD_INTERMEDIATE_PATH);
 
 const transformer = new TsAbsolutePathsTransformer({
-  srcPath: BUILD_INTERMEDIATE_PATH,
-  isModule(path) {
+  src: BUILD_INTERMEDIATE_PATH,
+  isAbsoluteModule(path) {
     const moduleName = path.split('/')[0];
     return moduleOptions.includes(moduleName);
   },
-  resolveModulePath(modulePath) {
+  resolveAbsoluteModule(modulePath) {
     return resolve(BUILD_INTERMEDIATE_PATH, modulePath);
   },
 });

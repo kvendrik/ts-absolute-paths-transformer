@@ -16,11 +16,11 @@ yarn add ts-absolute-paths-transformer
 ```ts
 const srcPath = resolve(__dirname, 'src');
 const transformer = new TsAbsolutePathsTransformer({
-  srcPath,
-  isModule(path: string) {
+  src: srcPath,
+  isAbsoluteModule(path: string) {
     return path.startsWith('utilities');
   },
-  resolveModulePath(path: string) {
+  resolveAbsoluteModule(path: string) {
     return resolve(srcPath, path);
   },
 });

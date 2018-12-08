@@ -20,11 +20,11 @@ describe('TsAbsolutePathsTransformer', () => {
     useFixture('basic');
 
     const transformer = new TsAbsolutePathsTransformer({
-      srcPath: FIXTURE_PATH,
-      isModule(path: string) {
+      src: FIXTURE_PATH,
+      isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveModulePath(modulePath: string) {
+      resolveAbsoluteModule(modulePath: string) {
         return resolve(FIXTURE_PATH, modulePath);
       },
     });
@@ -39,11 +39,11 @@ describe('TsAbsolutePathsTransformer', () => {
     useFixture('basic');
 
     const transformer = new TsAbsolutePathsTransformer({
-      srcPath: FIXTURE_PATH,
-      isModule(path: string) {
+      src: FIXTURE_PATH,
+      isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveModulePath(modulePath: string) {
+      resolveAbsoluteModule(modulePath: string) {
         return resolve(FIXTURE_PATH, modulePath);
       },
     });
@@ -58,11 +58,11 @@ describe('TsAbsolutePathsTransformer', () => {
     useFixture('basic');
 
     const transformer = new TsAbsolutePathsTransformer({
-      srcPath: FIXTURE_PATH,
-      isModule(path: string) {
+      src: FIXTURE_PATH,
+      isAbsoluteModule(path: string) {
         return path.startsWith('utilities');
       },
-      resolveModulePath(modulePath: string) {
+      resolveAbsoluteModule(modulePath: string) {
         return resolve(FIXTURE_PATH, modulePath);
       },
     });
@@ -79,11 +79,11 @@ describe('TsAbsolutePathsTransformer', () => {
     let askedToResolvePath = false;
 
     const transformer = new TsAbsolutePathsTransformer({
-      srcPath: FIXTURE_PATH,
-      isModule() {
+      src: FIXTURE_PATH,
+      isAbsoluteModule() {
         return false;
       },
-      resolveModulePath() {
+      resolveAbsoluteModule() {
         askedToResolvePath = true;
         return '';
       },

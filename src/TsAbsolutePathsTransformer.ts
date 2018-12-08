@@ -6,9 +6,9 @@ import Project, {
 } from 'ts-simple-ast';
 
 export interface Options {
-  srcPath: string;
-  isModule(filePath: string): boolean;
-  resolveModulePath(path: string): string;
+  src: string;
+  isAbsoluteModule(filePath: string): boolean;
+  resolveAbsoluteModule(path: string): string;
 }
 
 export default class TsAbsolutePathsTransformer {
@@ -19,11 +19,11 @@ export default class TsAbsolutePathsTransformer {
   }
 
   transformAndSave() {
-    const {srcPath} = this.options;
+    const {src} = this.options;
     const project = new Project();
 
-    project.addExistingSourceFiles(`${srcPath}/**/*.ts`);
-    project.addExistingSourceFiles(`${srcPath}/**/*.tsx`);
+    project.addExistingSourceFiles(`${src}/**/*.ts`);
+    project.addExistingSourceFiles(`${src}/**/*.tsx`);
 
     const files = project.getSourceFiles();
 
@@ -39,12 +39,12 @@ export default class TsAbsolutePathsTransformer {
     file: SourceFile,
     moduleDeclarations: ImportDeclaration[] | ExportDeclaration[],
   ) {
-    const {isModule} = this.options;
+    const {isAbsoluteModule} = this.options;
     const filePath = file.getFilePath();
 
     for (const moduleDeclaration of moduleDeclarations) {
       const path = this.getPathFromModuleDeclaration(moduleDeclaration);
-      if (!path || !isModule(path)) {
+      if (!path || !isAbsoluteModule(path)) {
         continue;
       }
       const relativePath = this.absoluteToRelativePath(filePath, path);
@@ -60,10 +60,10 @@ export default class TsAbsolutePathsTransformer {
   }
 
   private absoluteToRelativePath(filePath: string, modulePath: string) {
-    const {resolveModulePath} = this.options;
+    const {resolveAbsoluteModule} = this.options;
     const relativePath = relative(
       dirname(filePath),
-      resolveModulePath(modulePath),
+      resolveAbsoluteModule(modulePath),
     );
     return relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
   }
