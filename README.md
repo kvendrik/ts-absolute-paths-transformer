@@ -1,6 +1,7 @@
 # TypeScript Absolute Paths Transformer
 
 [![CircleCI](https://circleci.com/gh/kvendrik/ts-absolute-paths-transformer.svg?style=svg)](https://circleci.com/gh/kvendrik/ts-absolute-paths-transformer)
+[![Coverage Status](https://coveralls.io/repos/github/kvendrik/ts-absolute-paths-transformer/badge.svg?branch=master)](https://coveralls.io/github/kvendrik/ts-absolute-paths-transformer?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A small utility that converts absolute paths in TypeScript files to relative ones.
@@ -16,11 +17,11 @@ yarn add ts-absolute-paths-transformer
 ```ts
 const srcPath = resolve(__dirname, 'src');
 const transformer = new TsAbsolutePathsTransformer({
-  srcPath,
-  isModule(path: string) {
+  src: srcPath,
+  isAbsoluteModule(path: string) {
     return path.startsWith('utilities');
   },
-  resolveModulePath(path: string) {
+  resolveAbsoluteModule(path: string) {
     return resolve(srcPath, path);
   },
 });
